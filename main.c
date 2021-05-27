@@ -6,52 +6,6 @@ void	print_error(long *buffer)
 	exit (1);
 }
 
-void	sort_buffer(long *buffer, int size)
-{
-	int		i;
-	int		j;
-	long	tmp;
-
-	i = 1;
-	while (i < size)
-	{
-		j = size;
-		while (j > i)
-		{
-			if (buffer[j - 1] > buffer[j])
-			{
-				tmp = buffer[j - 1];
-				buffer[j - 1] = buffer[j];
-				buffer[j] = tmp;
-			}
-			j--;
-		}
-		i++;
-	}
-}
-
-void	get_order(t_stack *stack, long *buffer)
-{
-	t_list	*list;
-	int		i;
-
-	list = stack->begin;
-	while (list)
-	{
-		i = 0;
-		while (1)
-		{
-			if (list->value == buffer[i])
-			{
-				list->order = i + 1;
-				break ;
-			}
-			i++;
-		}
-		list = list->next;
-	}
-}
-
 void	norma(t_stack *stack_a, t_stack *stack_b, long *buffer)
 {
 	sort_buffer(buffer, stack_a->size);
@@ -67,7 +21,7 @@ void	clear_and_exit(long *buffer)
 	print_error(buffer);
 }
 
-void	fill_stack_and_check_sort(t_stack *stack_a,long  *buffer, int size)
+void	algo(t_stack *stack_a, t_stack *stack_b, long *buffer, int size)
 {
 	if (!fill_stack(&(stack_a->begin), buffer, size))
 		print_error(buffer);
@@ -77,6 +31,7 @@ void	fill_stack_and_check_sort(t_stack *stack_a,long  *buffer, int size)
 		free_stack(&(stack_a->begin));
 		exit (1);
 	}
+	norma(stack_a, stack_b, buffer);
 }
 
 int	main(int argc, char **argv)
@@ -104,7 +59,6 @@ int	main(int argc, char **argv)
 	}
 	else
 		return (0);
-	fill_stack_and_check_sort(&stack_a, buf, argc);
-	norma(&stack_a, &stack_b, buf);
+	algo(&stack_a, &stack_b, buf, argc);
 	return (0);
 }
