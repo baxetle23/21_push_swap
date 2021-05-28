@@ -47,7 +47,7 @@ void	refresh_flags(t_stack *stack_a, t_flags *flags);
 void	free_stack(t_list **lst);
 void	free_split(char **split);
 
-int		check_stack_max(t_stack *stack, t_flags *flags);
+int		check_stack_max(t_stack *stack, t_flags *flags, int *pos);
 int		check_stack_min(t_stack *stack_a, t_flags *flags);
 int		check_stack_min_v2(t_stack *stack, t_flags *flags);
 

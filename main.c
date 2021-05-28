@@ -6,15 +6,6 @@ void	print_error(long *buffer)
 	exit (1);
 }
 
-void	norma(t_stack *stack_a, t_stack *stack_b, long *buffer)
-{
-	sort_buffer(buffer, stack_a->size);
-	get_order(stack_a, buffer + 1);
-	sort_elements(stack_a, stack_b, buffer + 1);
-	free_stack(&(stack_a->begin));
-	free(buffer);
-}
-
 void	clear_and_exit(long *buffer)
 {
 	free(buffer);
@@ -31,7 +22,11 @@ void	algo(t_stack *stack_a, t_stack *stack_b, long *buffer, int size)
 		free_stack(&(stack_a->begin));
 		exit (1);
 	}
-	norma(stack_a, stack_b, buffer);
+	sort_buffer(buffer, stack_a->size);
+	get_order(stack_a, buffer + 1);
+	sort_elements(stack_a, stack_b, buffer + 1);
+	free_stack(&(stack_a->begin));
+	free(buffer);
 }
 
 int	main(int argc, char **argv)

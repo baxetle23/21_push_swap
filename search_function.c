@@ -1,15 +1,40 @@
 #include "./includes/push_swap.h"
 
-int	check_stack_max(t_stack *stack, t_flags *flags)
+int	check_stack_max_revers(t_stack *stack, t_flags *flags, int *pos)
 {
 	t_list	*list;
+	int		pos_reverse;
+	int		i;
 
+	i = 1;
 	list = stack->begin;
 	while (list)
 	{
 		if (list->order >= flags->mid || list->order == flags->next)
-			return (1);
+			pos_reverse = i;
+		i++;
 		list = list->next;
+	}
+	//printf("pos - %d            reverse pos - %d         size = %zu\n", *pos, pos_reverse, stack->size);
+	if (stack->size - pos_reverse < *pos)
+		*pos = -1;
+	else
+		*pos = 1;
+	return (1);
+}
+
+int	check_stack_max(t_stack *stack, t_flags *flags, int *pos)
+{
+	t_list	*list;
+
+	*pos = 1;
+	list = stack->begin;
+	while (list)
+	{
+		if (list->order >= flags->mid || list->order == flags->next)
+			return (check_stack_max_revers(stack, flags, pos));
+		list = list->next;
+		(*pos)++;
 	}
 	return (0);
 }
