@@ -1,5 +1,13 @@
 #include "./includes/push_swap.h"
 
+void	action_depend_elements(int	pos, t_stack *stack_b)
+{
+	if (pos == 1)
+		rotate_operation(stack_b, stack_b->type);
+	else if (pos == -1)
+		rrotate_operation(stack_b, stack_b->type);
+}
+
 void	sort_iz_a_v_b(t_stack *stack_a, t_stack *stack_b, t_flags *flags)
 {
 	t_list	*list;
@@ -39,12 +47,7 @@ void	sort_iz_b_v_a(t_stack *stack_a, t_stack *stack_b, t_flags *flags)
 			}
 		}
 		else
-		{
-			if (pos == 1)
-				rotate_operation(stack_b, stack_b->type);
-			else if (pos == -1)
-				rrotate_operation(stack_b, stack_b->type);
-		}
+			action_depend_elements(pos, stack_b);
 		list = stack_b->begin;
 	}
 }

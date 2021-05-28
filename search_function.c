@@ -15,7 +15,6 @@ int	check_stack_max_revers(t_stack *stack, t_flags *flags, int *pos)
 		i++;
 		list = list->next;
 	}
-	//printf("pos - %d            reverse pos - %d         size = %zu\n", *pos, pos_reverse, stack->size);
 	if (stack->size - pos_reverse < *pos)
 		*pos = -1;
 	else

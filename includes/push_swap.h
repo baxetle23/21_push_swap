@@ -65,5 +65,6 @@ void	first_step(t_stack *stack_a, t_stack *stack_b, t_flags *flags);
 void	second_step(t_stack *stack_a, t_stack *stack_b, t_flags *flags);
 void	sort_iz_a_v_b_flag_1(t_stack *stack_a, t_stack *stack_b, t_flags *flag);
 void	sort_elements(t_stack *stack_a, t_stack *stack_b, long *buffer);
+void	action_depend_elements(int	pos, t_stack *stack_b);
 
 #endif
